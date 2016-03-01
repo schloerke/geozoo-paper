@@ -146,11 +146,13 @@ result, which is shown for $p=1,2,3$ in Table \ref{verticetable}.
 \begin{verbatim}
 cube.iterate <- function(p) {
   set <- rbind(0, 1)
-   for (i in 1:(p-1)){
-     set <- rbind(cbind(set, 0),
-       cbind(set, 1))
-   }
-   set
+    for (i in 1:(p - 1)) {
+      set <- rbind(
+        cbind(set, 0),
+        cbind(set, 1)
+      )
+  }
+  set
 }
 \end{verbatim}
 
@@ -166,8 +168,12 @@ cube.iterate <- function(p) {
 
   \begin{verbatim}
 cube.permute <- function(p) {
-  as.matrix( do.call( expand.grid,
-    rep( list( c( 0, 1)), p)))
+  as.matrix(
+    do.call(
+      expand.grid,
+      rep(list(c(0, 1)), p)
+    )
+  )
 }
 \end{verbatim}
 \end{itemize}
@@ -199,13 +205,12 @@ and edge lists for $p=1, 2$ and $3$.
 cube.edges.length1 <- function(cube) {
   a <- 2 ^ ncol(cube)
   cube.lines <- NULL
-  for (i in 1:(a-1)) {
-    for (j in (i+1):a) {
-      d1 <- sum((cube[i, ]-cube[j, ])^2)
-      if (d1==1){
-        cube.lines <-
-          rbind(cube.lines, c(i,j))
-        }
+  for (i in 1:(a - 1)) {
+    for (j in (i + 1):a) {
+      d1 <- sum((cube[i, ] - cube[j, ]) ^ 2)
+      if (d1 == 1){
+        cube.lines <- rbind(cube.lines, c(i,j))
+      }
     }
   }
   cube.lines
@@ -230,12 +235,11 @@ cube.edges.length1 <- function(cube) {
 \begin{verbatim}
 cube.edges.binomial <- function(cube) {
   cube.lines <- NULL
-  for (i in 1:(nrow(cube)-1)) {
+  for (i in 1:(nrow(cube) - 1)) {
     for (j in 1:ncol(cube)) {
       if (cube[i,j] == 0) {
         a <- 2 ^ (j - 1) + i
-        cube.lines <-
-          rbind(cube.lines, c(i,a))
+        cube.lines <- rbind(cube.lines, c(i,a))
       }
     }
   }
@@ -264,12 +268,11 @@ library(bitops)
 cube.edges.binary <- function(p) {
   vertices <- 0:(2 ^ p - 1)
   from <- vertices[
-    rep(1:length(vertices), each=p)
+    rep(1:length(vertices), each = p)
   ]
-  edges <- 2 ^ (0:(p-1))
+  edges <- 2 ^ (0:(p - 1))
   to <- bitXor(from, edges)
-  cube.wires <- subset(
-    data.frame(from, to), from < to) + 1
+  cube.wires <- subset(data.frame(from, to), from < to) + 1
   cube.wires
 }
 \end{verbatim}
@@ -373,10 +376,9 @@ easy to generate, using either random sampling or a fixed grid.
     number of points is capped at 50000 points for speed of viewing.
 
 \begin{verbatim}
-cube.solid.random <-
-  function(p, n = 850 * 2^p) {
-  x <- matrix(runif(n*p), ncol = p)
-  colnames(x) <- paste("X", 1:p, sep="")
+cube.solid.random <- function(p, n = 850 * 2 ^ p) {
+  x <- matrix(runif(n * p), ncol = p)
+  colnames(x) <- paste("X", 1:p, sep = "")
   x
 }
 \end{verbatim}
@@ -389,9 +391,9 @@ cube.solid.random <-
     to be varied.
 
 \begin{verbatim}
-cube.solid.grid <- function(p,n) {
+cube.solid.grid <- function(p, n) {
   grid <- list(seq(0, 1, length = n))
-  do.call(expand.grid, rep(grid, p ))
+  do.call(expand.grid, rep(grid, p))
 }
 \end{verbatim}
 \end{itemize}
@@ -551,7 +553,7 @@ example, corrects for the volume.
 
 \begin{verbatim}
 sphere.solid.random <- function(p, n = p * 500) {
-  sphere.hollow(p, n) * runif(n) ^ (1/p)
+  sphere.hollow(p, n) * runif(n) ^ (1 / p)
 }
 \end{verbatim}
 
@@ -575,7 +577,7 @@ Simplexes are one of the simplest objects to create and view. A $p$-D
 simplex is a shape that lives in one dimension less than $p$. It has
 vertices corresponding to the coordinate axes. The simplex vertices
 are then projected, using a Helmert matrix, into the
-$(p-1)$-dimensional space in which it exists.
+$(p - 1)$-dimensional space in which it exists.
 
 \begin{figure}[ht]
 \centerline{
@@ -594,10 +596,10 @@ equilateral triangle, (0.7071,0.4082), (-0.7071,0.4082), (0.0000,
 
 \begin{verbatim}
 helmert <- function(d) {
-  helmert <- rep(1/sqrt(d), d)
-  for(i in 1:(d-1)){
-    x <- rep(1/sqrt(i*(i+1)), i)
-    x <- c(x, -i/sqrt(i*(i+1)))
+  helmert <- rep(1 / sqrt(d), d)
+  for (i in 1:(d - 1)) {
+    x <- rep(1 / sqrt(i * (i + 1)), i)
+    x <- c(x, -i / sqrt(i * (i + 1)))
     x <- c(x, rep(0, d - i - 1))
     helmert <- rbind(helmert, x)
   }
@@ -607,9 +609,9 @@ helmert <- function(d) {
 simplex <- function(p) {
   x <- diag(p)
   # center simplex
-  x <- x - matrix(1/p, p, p)
+  x <- x - matrix(1 / p, p, p)
   hm <- helmert(p)
-  final <- (x %*% t(hm))[,-1]
+  final <- (x %*% t(hm))[, -1]
   final
 }
 \end{verbatim}
@@ -628,7 +630,7 @@ simplex.wires <- function(simplex) {
       c(1:nrow(simplex))
     )
   )
-  wires[!wires[,1]==wires[,2],]
+  wires[!wires[,1] == wires[,2],]
 }
 \end{verbatim}
 
@@ -840,7 +842,7 @@ for each value of angle.  By varying the angle and binding the result
 we get points over the surface of the torus:
 
 \begin{verbatim}
-finished <- rbind(finished,torus.row)
+finished <- rbind(finished, torus.row)
 \end{verbatim}
 
 or
@@ -850,16 +852,18 @@ matrix(
   do.call("rbind", as.list(
     replicate(
       n,
-      torus.row(radius,p))
+      torus.row(radius, p)
+    )
   )),
-  ncol=p,byrow=TRUE)
+  ncol = p, byrow = TRUE
+)
 \end{verbatim}
 
 The angles create the rings, and thus need to vary fully between 0 and
 $2\pi$:
 
 \begin{verbatim}
-t <- runif(p-1,min=0,max=2*pi)
+t <- runif(p - 1, min = 0, max = 2 * pi)
 \end{verbatim}
 
 The radii for the process are fixed at the start.  To produce a hole
@@ -868,7 +872,7 @@ hole to have a size of 1 in every dimension, and the radii are a power
 of 2 less than the previous dimension.
 
 \begin{verbatim}
-radius <- (2^((p - 2):0))
+radius <- 2 ^ ((p - 2):0)
 \end{verbatim}
 
 \noindent This produces points fairly randomly spread on the surface of
@@ -957,7 +961,7 @@ shapes. For example, ranked data showing preferences for a fixed set
 of objects, can be mapped to high-dimensional polytopes \citep{Th93}.
 Values in a sample are commonly constrained to sum to a fixed number,
 for example, 100\%, forming compositional data. This type of data lies
-inside a $(p-1)$-D simplex. Good experimental designs commonly have a
+inside a $(p - 1)$-D simplex. Good experimental designs commonly have a
 geometric structure \citep{HSS99}.
 
 We encourage the reader to look at the movies, and images, and
