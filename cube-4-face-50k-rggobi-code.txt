@@ -1,6 +1,0 @@
-
-df<-ggobi(file.choose())
-A<-df[,1]
-A_color<-c(rep(3,16),rep(1,12500),rep(5,12500),rep(6,12500),rep(4,12500))
-glyph_color(A)<-A_color
-glyph_type(A)<-c(rep(1,16),rep(2,50000)
