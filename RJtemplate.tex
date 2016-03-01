@@ -281,65 +281,71 @@ cube.edges.binary <- function(p) {
 
 \begin{table*}[htp]
   \centering
-1-D:
-\bigskip
+  \begin{tabular}{c c}
 
-\begin{tabular}{|l ||r|| r|}
-\hline
-row \# & 1 & edges \\
-\hline
-1 & 0 & 2\\
-\hline
-2 & 1 & \\
-\hline
-\end{tabular}
-\bigskip
+    \begin{tabular}{c}
 
-2-D:
-\bigskip
+      1-D: \\
 
-\begin{tabular}{|l ||r|r|| r r|}
-\hline
-row \# & 1 & 2 & \multicolumn{2}{c|}{edges} \\
-\hline
-1 & 0 & 0 & 2 & 3\\
-\hline
-2 & 1 & 0 &  & 4 \\
-\hline
-3 & 0 & 1 &  4 & \\
-\hline
-4 & 1 & 1 &  & \\
-\hline
-\end{tabular}
+      \begin{tabular}{|l ||r|| r|}
+        \hline
+        row \# & 1 & edges \\
+        \hline
+        1 & 0 & 2\\
+        \hline
+        2 & 1 & \\
+        \hline
+      \end{tabular}
+      \\
+      \\
+      2-D: \\
 
-\bigskip
+      \begin{tabular}{|l ||r|r|| r r|}
+        \hline
+        row \# & 1 & 2 & \multicolumn{2}{c|}{edges} \\
+        \hline
+        1 & 0 & 0 & 2 & 3\\
+        \hline
+        2 & 1 & 0 &  & 4 \\
+        \hline
+        3 & 0 & 1 &  4 & \\
+        \hline
+        4 & 1 & 1 &  & \\
+        \hline
+      \end{tabular}
+    \end{tabular}
 
-3-D:
-\bigskip
+    &
 
-\begin{tabular}{|l ||r|r|r|| r r r|}
-\hline
-row \# & 1 & 2 & 3 & \multicolumn{3}{c|}{edges} \\
-\hline
-1 & 0 & 0& 0 & 2 & 3 & 5\\
-\hline
-2 & 1 & 0 & 0 & & 4 & 6\\
-\hline
-3 & 0 & 1 & 0 & 4 & & 7\\
-\hline
-4 & 1 & 1 & 0 & & & 8\\
-\hline
-5 & 0 & 0 & 1 & 6 & 7 & \\
-\hline
-6 & 1 & 0 & 1 & & 8 & \\
-\hline
-7 & 0 & 1 & 1 & 8 & & \\
-\hline
-8 & 1 & 1 & 1 & & & \\
-\hline
-\end{tabular}
-\caption{Cube Vertices and Edges.}
-\label{verticetable}
+    \begin{tabular}{c}
+      3-D: \\
+
+      \begin{tabular}{|l ||r|r|r|| r r r|}
+        \hline
+        row \# & 1 & 2 & 3 & \multicolumn{3}{c|}{edges} \\
+        \hline
+        1 & 0 & 0& 0 & 2 & 3 & 5\\
+        \hline
+        2 & 1 & 0 & 0 & & 4 & 6\\
+        \hline
+        3 & 0 & 1 & 0 & 4 & & 7\\
+        \hline
+        4 & 1 & 1 & 0 & & & 8\\
+        \hline
+        5 & 0 & 0 & 1 & 6 & 7 & \\
+        \hline
+        6 & 1 & 0 & 1 & & 8 & \\
+        \hline
+        7 & 0 & 1 & 1 & 8 & & \\
+        \hline
+        8 & 1 & 1 & 1 & & & \\
+        \hline
+      \end{tabular}
+    \end{tabular}
+  \end{tabular}
+
+  \caption{Cube Vertices and Edges.}
+  \label{verticetable}
 \end{table*}
 
 \subsection{Solid Cube}
