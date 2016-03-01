@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.7)
+The top-level auxiliary file: JSS-GeometricShapes.aux
+The style file: jss.bst
+Database file #1: JSS-GeometricShapes.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+You've used 15 entries,
+            3179 wiz_defined-function locations,
+            745 strings with 7675 characters,
+and the built_in function-call counts, 10967 in all, are:
+= -- 910
+> -- 269
+< -- 12
++ -- 103
+- -- 86
+* -- 833
+:= -- 1554
+add.period$ -- 64
+call.type$ -- 15
+change.case$ -- 92
+chr.to.int$ -- 15
+cite$ -- 15
+duplicate$ -- 1004
+empty$ -- 1024
+format.name$ -- 115
+if$ -- 2231
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 148
+newline$ -- 90
+num.names$ -- 65
+pop$ -- 340
+preamble$ -- 1
+purify$ -- 87
+quote$ -- 0
+skip$ -- 264
+stack$ -- 0
+substring$ -- 877
+swap$ -- 323
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 129
+warning$ -- 0
+while$ -- 90
+width$ -- 0
+write$ -- 208
