@@ -438,7 +438,7 @@ subsequent plots show the remaining faces.
   \includegraphics[width=1in]{fig/cube-4-face-3-1.pdf} &\includegraphics[width=1in]{fig/cube-4-face-4-1.pdf}
 \end{tabular}
 
-  \caption{Faces of a 3-D cube (top) and a 4-D cube (bottom), obtained by fixing one column of values to be 0 or 1, and allowing the other columns to vary freely between 0 and 1.}
+  \caption{Faces of a 3-D cube (top row) and a 4-D cube (bottom row), obtained by fixing one column of values to be 0 or 1, and allowing the other columns to vary freely between 0 and 1.}
   \label{faces}
 \end{figure}
 
@@ -473,9 +473,8 @@ the dimension of increases.
 
 \section{Spheres}
 
-A sphere can be described as $\{X: X_1^2+\dots + X_p^2 \leq 1\}$, all
-points within a fixed radius of zero.  A hollow sphere is the set of
-points with radius equal to 1.
+A sphere can be described as all
+points within a fixed radius of zero, $\{X: X_1^2+\dots + X_p^2 \leq 1\}$.  A hollow sphere is the set of points with radius equal to 1, $\{X: X_1^2+\dots + X_p^2 = 1\}$. Generating the hollow sphere is simpler than the solid sphere.
 
 \subsection{Hollow Sphere}
 
@@ -513,7 +512,7 @@ sphere_hollow <- function(p, n = p * 500) {
 
 \subsection{Don't Reject the Solid Sphere!}
 
-Solid spheres could be generated in much the same way as solid cubes; use
+Solid spheres can be generated in much the same way as solid cubes; use
 random points to fill the object. While the solid cube fills the box,
 the sphere's points are inside a radius of 1 from the center. A simple
 approach would be to use a rejection method: generate points in the
@@ -531,7 +530,7 @@ distribution on $(0,1)$ (left plot). The result is raised to the power
 $1/p$ to adjust for the volume increase with $p$, resulting in points
 spread evenly throughout the inside of the sphere (middle plot).
 Taking the sphere to the $1/p$ power may seem ad hoc, but the
-operation ensures that the density uniform within the sphere. To see
+operation ensures that the density is uniform within the sphere. To see
 this, compare circles of radius 1 and 2 (right plot).  The area of the
 smaller circle equals $\pi =  1^2\pi $.  The area of the whole
 circle equals $ 4 \pi = 2^2 \pi $. This is four times as large, but
@@ -570,8 +569,8 @@ $(p - 1)$-dimensional space in which it exists.
 
 \begin{figure}[ht]
 \centering
-\begin{tabular}{c c}
-\includegraphics[width=1.2in]{fig/simplex2.pdf} & \includegraphics[width=1.2in]{fig/simplex3.pdf} \\
+\begin{tabular}{cccc}
+\includegraphics[width=1.2in]{fig/simplex2.pdf} & \includegraphics[width=1.2in]{fig/simplex3.pdf} &
 \includegraphics[width=1.2in]{fig/simplex4.pdf} & \includegraphics[width=1.2in]{fig/simplex5.pdf}
 \end{tabular}
 
@@ -608,7 +607,7 @@ simplex <- function(p) {
 \end{verbatim}
 
 % TODO ``two lines of code''
-The wire frame for a simplex connects ever point to every other point, and can
+The wire frame for a simplex connects every point to every other point, and can
 be computed in just two lines of code, following method 2 of the cube
 vertices. It makes a list of all combinations of each row number and then
 removes the lines that connect a point to itself.
