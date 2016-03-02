@@ -174,12 +174,12 @@ cube_permute <- function(p) {
 
 \subsection{Completing the Wire Frame}
 
-The wire frame for a cube draws the edges of the cube, that it is
-connects all points that differ in one of the values, e.g. $(0,0,0)$
+The wire frame for a cube draws the edges of the cube, 
+connecting all points that differ in one of the values, e.g. $(0,0,0)$
 and $(1,0,0)$, or $(0,0,0)$ and $(0,1,0)$ for a 3-D cube. Each edge is
 a vector of length $1$, and it is defined by specifying the row
 numbers of the two corresponding elements of the vertex data, e.g. in
-a 3-D cube $(2,4)$ would connect rows $2 (1,0,0)$ and $4
+a 3-D cube $(2,4)$ would connect rows $ (1,0,0)$ and $
 (1,1,0)$. Table \ref{verticetable} gives vertex
 and edge lists for $p=1, 2$ and $3$. Edges are not ordered $(1,2)=(2,1)$, and we use just
 one of the two, with the smaller number first. Here are three ways to
@@ -291,12 +291,12 @@ cube_edges_length1 <- function(cube) {
     created using the methods described in
     Section~\ref{cube-vertices}. Each vertex, that has $c$ elements
     equal to 0, will be connected to $c$ other vertices, and we need
-    to determine the row numbers for these other vertices. The row
+    to determine the row numbers for these other vertices. (The row
     number for a corresponding connected vertex is obtained by adding
-    2$^{(j-1)}, j=1,...,\#p$, if column $j$ contains 0, to the row
-    number, $i, i=1,...,\#vertices-1$ of the originating vertex. For
+    2$^{(j-1)}, j=1,...,p$, if column $j$ contains a 0, to the row
+    number, $i, i=1,...,(\#vertices-1)$ of the originating vertex.) For
     example, for a 3-D cube, the first vertex $(0,0,0)$ will be
-    connected to vertices $2^0+1=2, 2^1+1=3, 2^2+1=5$.
+    connected to vertices $2^0+1=2, 2^1+1=3$ and $2^2+1=5$.
 
 \begin{verbatim}
 cube_edges_binomial <- function(cube) {
@@ -405,7 +405,7 @@ cube_solid_grid <- function(p, n) {
 
 There are advantages and disadvantages.  The first method, random
 points, produces a solid cube that looks more solid, but as $p$
-increases points near the vertices become more scarce.  With
+increases, points near the vertices become more scarce.  With
 equidistant points the filled cubes better fills the vertex regions, but the structure  produces regular patterns which can be distracting to a viewer.
 
 \subsection{Hollow Cube}
@@ -456,7 +456,7 @@ subsequent plots show the remaining faces.
 
 \subsection{High-D Cubes Look Spherical!}
 
-As the dimension increases the shape the cube takes in a 2-D
+As the dimension increases, the shape the cube takes in a 2-D
 projection looks more rounded than square. The reason is explained in
 \citet{DF84} and is related to the Central Limit Theorem. When we use
 a tour to visualize high-dimensional data we examine low-dimensional
@@ -634,7 +634,7 @@ extensive collection of polyhedra, ranging from Platonic Solids to
 Stellations of the Rhombic Triacontahedron. In our data sets, we used
 the information from Platonic Solids, Kepler-Poinsot Polyhedra,
 Archimedean Polyhedra and its duals, Prisms. The data was reformatted
-from VRML, into the XML. The vertices and wire frames from separate
+from VRML into XML. The vertices and wire frames from separate
 files were compiled into tables. Some reformatting of edges was also
 necessary.
 
@@ -645,8 +645,8 @@ several famous objects, including the Mobius Strip, Steiner's Roman
 Surface and the Klein Bottle (Figure \ref{klein}). It is interesting to see how each object
 twists onto itself.  R functions based on these equations were written
 to produce each object.  Each object was rendered by points on the
-surface. For each shape a set of random angles was generated to seed
-the equations, generating points on the surface.  For some of the
+surface. For each shape, a set of random angles were generated to seed
+the equations, producing points on the surface.  For some of the
 objects, to view the object in its familiar form the plot limits for each
 variable need to use the global minimum and maximum values.
 
@@ -689,7 +689,7 @@ inspiration. The website explains how the 3-D torus is made.
 
 It also contains information that we used to develop the process of
 building high-dimensional tori.  Figure \ref{ringtorus} shows this
-process: a small circle follows a larger circle, creating a
+process: a smaller circle that follows a larger circle, creating a
 doughnut. The points for the torus are formed by polar coordinates.
 
 \begin{figure}[ht]
@@ -705,7 +705,7 @@ To produce a 4-D torus, a 3-D torus is rotated around a circle into
 the fourth dimension (Figure \ref{ringtorus} bottom row).  This torus
 still has a hole in the center.  A way to think about the process is a
 recursive circle system. For a 3-D torus, the smaller radius circle
-follows the larger radius circle. For a 4-D torus, a 3-D torus an even
+follows the larger radius circle. For a 4-D torus, a 3-D torus follows an even
 larger radius circle.  That is, the lower-dimensional torus is
 shifted a fixed distance and rotated about a \textit{new} axis
 perpendicular to the axis of the hole. The next two sections describe
@@ -955,8 +955,7 @@ inside a $(p - 1)$-D simplex. Good experimental designs commonly have a
 geometric structure \citep{HSS99}. The ideas to examine boundaries of supervised classifiers described in \citet{CCWH08} build on the geometric shapes described here.
 
 We encourage the reader to look at the movies, and images, and
-download the data on the project web site, which is accessible from
-the GGobi web site (\url{http://www.ggobi.org}). The \CRANpkg{geozoo}
+download the data on the project web site, which is accessed at \url{http://schloerke.github.io/geozoo/}. The \CRANpkg{geozoo}
 package contains the R code to generate the geometric shapes, is
 available to download from CRAN (\url{http://www.R-project.org}). We
 especially encourage readers to experiment with creating new
@@ -967,7 +966,7 @@ high-dimensional geometric shapes, or contribute ideas and code back to this pro
 This work was supported by National Science Foundation grant
 DMS0706949. Andreas Buja provided some helpful feedback on the
 work. Dianne Cook thanks the Isaac Newton Institute, Cambridge, UK for
-support, where she was visiting during the last revision of this paper.
+support, where she was visiting while drafting this paper.
 
 \bibliography{schloerke}
 
