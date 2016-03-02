@@ -638,25 +638,17 @@ from VRML, into the XML. The vertices and wire frames from separate
 files were compiled into tables. Some reformatting of edges was also
 necessary.
 
-\begin{figure}[ht]
-\centering
-\begin{tabular}{ccc}
-\includegraphics[width=1.0in]{fig/24-cell.pdf}&\includegraphics[width=1in]{fig/120-cell.pdf}&\includegraphics[width=1in]{fig/600-cell.pdf}
-\end{tabular}
-\caption{24-Cell, 120-Cell, and 600-Cell.}
-\end{figure}
-
 \section{Surfaces and Curves}
 
 Paul Bourke's website \citep{PBCurves} has equations for generating
 several famous objects, including the Mobius Strip, Steiner's Roman
-Surface and the Klein Bottle. It is interesting to see how each object
+Surface and the Klein Bottle (Figure \ref{klein}). It is interesting to see how each object
 twists onto itself.  R functions based on these equations were written
 to produce each object.  Each object was rendered by points on the
 surface. For each shape a set of random angles was generated to seed
 the equations, generating points on the surface.  For some of the
-objects, to view the object in its familiar form the limits for each
-variable need to be equal, see Section \ref{notes}.
+objects, to view the object in its familiar form the plot limits for each
+variable need to use the global minimum and maximum values.
 
 \begin{figure}[ht]
 \centering
@@ -664,6 +656,7 @@ variable need to be equal, see Section \ref{notes}.
 \includegraphics[width=1in]{fig/mobius.pdf}&\includegraphics[width=1in]{fig/roman.pdf}&\includegraphics[width=1in]{fig/boy-surface.pdf}
 \end{tabular}
 \caption{Mobius strip, Steiner's roman surface, and Boy's surface.}
+\label{klein}
 \end{figure}
 
 \section{Polytopes}
@@ -672,11 +665,21 @@ A polytope is a generalized term of a geometric shape in any
 dimension. A polygon is a 2-D polytope. A polyhedron is a 3-D
 polytope. A polychoron is a 4-D polytope. Beyond that we typically use
 polytope to refer to any $p$-gon.  Our polychoron data comes from Paul
-Bourke's website \citep{PBPlatonic}, where there is information some
-objects that we have already covered hypercube, simplex, and new
-objects, 24-cell, 120-cell, 600-cell.  The explanations of these
-polytopes is very clear. We've reformatted the data into XML files
-defining vertices and edges for each of the shapes.
+Bourke's website \citep{PBPlatonic}, where there is also information on some of the 
+objects that have been covered (hypercube, simplex) in the preceding sections of this paper, and new
+objects, 24-cell, 120-cell, 600-cell (Figure \ref{polytope}).  The explanations of these
+polytopes is very clear. The data has been formatted into XML files
+allowing descriptions of the vertices and edges for each shape.
+
+\begin{figure}[ht]
+\centering
+\begin{tabular}{ccc}
+\includegraphics[width=1.0in]{fig/24-cell.pdf}&\includegraphics[width=1in]{fig/120-cell.pdf}&\includegraphics[width=1in]{fig/600-cell.pdf}
+\end{tabular}
+\caption{24-Cell, 120-Cell, and 600-Cell.}
+\label{polytope}
+\end{figure}
+
 
 \section{Tori}
 
@@ -694,7 +697,7 @@ doughnut. The points for the torus are formed by polar coordinates.
 \begin{tabular}{c c c}
 \includegraphics[width=1in]{fig/torus-ring-3-2nd-1.pdf} & \includegraphics[width=1in]{fig/torus-ring-3-2nd-2.pdf} & \includegraphics[width=1in]{fig/torus-ring-3-2nd-3.pdf}   \\ \includegraphics[width=1in]{fig/torus-rings-4-2.pdf} &\includegraphics[width=1in]{fig/torus-rings-4-with-torus-2.pdf}&\includegraphics[width=1in]{fig/torus-rings-4-with-torus-1.pdf}
 \end{tabular}
-\caption{Generating a torus: 2-D to 3-D, and 3-D to 4-D.}
+\caption{Generating a torus: 2-D to 3-D (top row), and 3-D to 4-D (bottom row).}
 \label{ringtorus}
 \end{figure}
 
@@ -704,7 +707,7 @@ still has a hole in the center.  A way to think about the process is a
 recursive circle system. For a 3-D torus, the smaller radius circle
 follows the larger radius circle. For a 4-D torus, a 3-D torus an even
 larger radius circle.  That is, the lower-dimensional torus is
-translated a fixed distance and rotated about a \textit{new} axis
+shifted a fixed distance and rotated about a \textit{new} axis
 perpendicular to the axis of the hole. The next two sections describe
 the process in detail.
 
@@ -867,7 +870,7 @@ of 2 less than the previous dimension.
 radius <- 2 ^ ((p - 2):0)
 \end{verbatim}
 
-\noindent This produces points fairly randomly spread on the surface of
+\noindent This produces points fairly evenly, but not uniformly spread on the surface of
 the torus.  A more regular way to form a torus is to form the angles
 into a set of intervals, resulting in more circular patterns.
 
@@ -901,16 +904,15 @@ construction.
 
 \begin{figure}[ht]
   \centering
-    \begin{tabular}{cc}
+    \begin{tabular}{cccc}
     \includegraphics[width=1.2in]{fig/torus-flat-6-0.pdf} &
-      \includegraphics[width=1.2in]{fig/torus-flat-6-1.pdf} \\
+      \includegraphics[width=1.2in]{fig/torus-flat-6-1.pdf} &
     \includegraphics[width=1.2in]{fig/torus-flat-6-2.pdf} &
       \includegraphics[width=1.2in]{fig/torus-flat-6-3.pdf}
     \end{tabular}
-    \includegraphics[width=2.7in]{fig/torus-flat-6-matrix.pdf}
-  \caption{Views of the 6-D flat tori which illustrate its
-    construction. Plots 2-4 in the top row contain highlights correspond
-    to those seen in the scatterplot matrix.}
+    \includegraphics[width=3in]{fig/torus-flat-6-matrix.pdf}
+  \caption{Views of the 6-D flat torus which illustrate its
+    construction. The torus (top right) has its components highlighted with green, orange and blue, and the same torus is displayed as a scatterplot matrix, better revealing the construction. }
   \label{flat2}
 \end{figure}
 
@@ -928,7 +930,7 @@ construction.
 %%%  It is also in the figure, that is not commented out, right above this statement.
 %%%  So, I don't think I need to reference it.
 
-\subsection{Solid?}  %%%  Di, Why the question mark?  See if you also agree with the statement below.  Is the the smallest radii only or all but the largest?  For a doughnut it is only the smallest or all but the largest one.
+\subsection{Solid}  %%%  Di, Why the question mark?  See if you also agree with the statement below.  Is the the smallest radii only or all but the largest?  For a doughnut it is only the smallest or all but the largest one.
 
 These tori are all hollow. To create points in the interior of the
 tori one would randomly generate the smallest radii in the hyper-ring torus and all radii in the flat torus.
@@ -937,20 +939,20 @@ tori one would randomly generate the smallest radii in the hyper-ring torus and 
 
 This paper has described how \CRANpkg{geozoo} generates several types of
 high-dimensional geometric shapes. The result is a library designed to
-help conceptualize high-dimensional spaces. It has also led to some
+help conceptualize objects in high-dimensional spaces. It has also led to some
 new geometric shape definitions.
 
 This library, although seemingly removed from real high-dimensional
 data has some strong connections. Much of our data analytic methods
 are based in high-dimensional Euclidean space. Developing some visual
 insight into this space can help to understand the methods that
-operate in the space. Some data can be closely mapped to the geometric
+operate in the space. Some data problems can be closely mapped to the geometric
 shapes. For example, ranked data showing preferences for a fixed set
 of objects, can be mapped to high-dimensional polytopes \citep{Th93}.
 Values in a sample are commonly constrained to sum to a fixed number,
 for example, 100\%, forming compositional data. This type of data lies
 inside a $(p - 1)$-D simplex. Good experimental designs commonly have a
-geometric structure \citep{HSS99}.
+geometric structure \citep{HSS99}. The ideas to examine boundaries of supervised classifiers described in \citet{CCWH08} build on the geometric shapes described here.
 
 We encourage the reader to look at the movies, and images, and
 download the data on the project web site, which is accessible from
@@ -966,14 +968,6 @@ This work was supported by National Science Foundation grant
 DMS0706949. Andreas Buja provided some helpful feedback on the
 work. Dianne Cook thanks the Isaac Newton Institute, Cambridge, UK for
 support, where she was visiting during the last revision of this paper.
-
-\section*{Notes}~\label{notes}
-
-In GGobi, by default each dimension is scaled to its own local minimum
-and maximum. Some objects need to be scaled to a global maximum and
-minimum, e.g. an ellipsoid, to be viewed properly. To do this in GGobi
-go to the Variable Manipulation Tool, and set the User Limits to be
-equal to the global minimum and maximum.
 
 \bibliography{schloerke}
 
