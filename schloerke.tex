@@ -77,7 +77,7 @@ cubes, spheres, simplexes, polyhedra, polytopes, tori.
 
 \section{Cubes}
 
-\subsection{In the Beginning...}
+%\subsection{In the Beginning...}
 
 Cubes are the first shape that a person should examine when
 starting to learn about higher dimensions. Cubes are relatively simple
@@ -87,33 +87,33 @@ a 3-D cube is a box.
 
 The 4-D cube may be hard to imagine, partly because we are accustomed
 to describing our physical world using only three dimensions.  The
-leap to 4-D might be more understandable if one has seen the movie
-Flatland \citep{Ma65} or read the novella of the same name
-\citep{Ab1884}. In Flatland, the world is 2-D and characters struggle
+leap to 4-D is more understandable after watching the movie
+``Flatland'' \citep{Ma65} or reading the novella of the same name
+\citep{Ab1884}. In ``Flatland'', the world is 2-D and characters struggle
 with the concept of 3-D.
 
-We might think of our world as ``Boxland'': we live in 3-D and see
-everything as 2-D images. Shadows created by light sources help
+Working from this name, we might think of our world as ``Boxland'': we live in 3-D and see
+struggle with the concept of higher dimensions. Shadows created by light sources help
 perceive the third dimension. In Flatland, the inhabitants see only
 1-D line segments. For a Flatlander who has never seen the world we
-live in, the third dimension would be hard to understand. Similarly,
+live in, the third dimension is hard to understand. Similarly,
 for inhabitants of our world, it might seem daunting to imagine the
 fourth dimension. But it's not that difficult!
 
 Figure \ref{boxes} shows the evolution of the cube from 2-D to
 5-D. Each figure is a projection of a wireframe cube from two to five
 dimensions. To increase the dimension, double the cube and connect the
-corresponding vertices. The 3-D cube is 2$\times$2-D squares,
+corresponding vertices. The 3-D cube grows from 2$\times$2-D squares,
 connected with four more edges. The 4-D cube is born from 2$\times$3-D
 cubes and a 5-D cube emerges from 2$\times$4-D cubes.
 
 \begin{figure}[ht]
 \centering
-\begin{tabular}{c c}
-\includegraphics[width=1in]{fig/cube2D.pdf} & \includegraphics[width=1in]{fig/cube3D.pdf} \\
+\begin{tabular}{cccc}
+\includegraphics[width=1in]{fig/cube2D.pdf} & \includegraphics[width=1in]{fig/cube3D.pdf} &
 \includegraphics[width=1in]{fig/cube4D.pdf} & \includegraphics[width=1in]{fig/cube5D.pdf}
 \end{tabular}
-\caption{Wireframe cubes: 2-D, 3-D, 4-D, 5-D.}
+\caption{Wireframe cubes, (from left to right) 2-D, 3-D, 4-D, 5-D.}
 \label{boxes}
 \end{figure}
 
@@ -185,11 +185,80 @@ and $(1,0,0)$, or $(0,0,0)$ and $(0,1,0)$ for a 3-D cube. Each edge is
 a vector of length $1$, and it is defined by specifying the row
 numbers of the two corresponding elements of the vertex data, e.g. in
 a 3-D cube $(2,4)$ would connect rows $2 (1,0,0)$ and $4
-(1,1,0)$. Also edges are not ordered $(1,2)=(2,1)$, and we use just
+(1,1,0)$. Table \ref{verticetable} gives vertex
+and edge lists for $p=1, 2$ and $3$. Edges are not ordered $(1,2)=(2,1)$, and we use just
 one of the two, with the smaller number first. Here are three ways to
 generate an edge set, the last being the most computationally
-efficient but less intuitive. Table \ref{verticetable} gives vertex
-and edge lists for $p=1, 2$ and $3$.
+efficient but less intuitive. 
+
+\begin{table*}[htp]
+  \centering
+  \begin{tabular}{c c}
+
+    \begin{tabular}{c}
+
+      1-D: \\
+
+      \begin{tabular}{|l ||r|| r|}
+        \hline
+        row \# & 1 & edges \\
+        \hline
+        1 & 0 & 2\\
+        \hline
+        2 & 1 & \\
+        \hline
+      \end{tabular}
+      \\
+      \\
+      2-D: \\
+
+      \begin{tabular}{|l ||r|r|| r r|}
+        \hline
+        row \# & 1 & 2 & \multicolumn{2}{c|}{edges} \\
+        \hline
+        1 & 0 & 0 & 2 & 3\\
+        \hline
+        2 & 1 & 0 &  & 4 \\
+        \hline
+        3 & 0 & 1 &  4 & \\
+        \hline
+        4 & 1 & 1 &  & \\
+        \hline
+      \end{tabular}
+    \end{tabular}
+
+    &
+
+    \begin{tabular}{c}
+      3-D: \\
+
+      \begin{tabular}{|l ||r|r|r|| r r r|}
+        \hline
+        row \# & 1 & 2 & 3 & \multicolumn{3}{c|}{edges} \\
+        \hline
+        1 & 0 & 0& 0 & 2 & 3 & 5\\
+        \hline
+        2 & 1 & 0 & 0 & & 4 & 6\\
+        \hline
+        3 & 0 & 1 & 0 & 4 & & 7\\
+        \hline
+        4 & 1 & 1 & 0 & & & 8\\
+        \hline
+        5 & 0 & 0 & 1 & 6 & 7 & \\
+        \hline
+        6 & 1 & 0 & 1 & & 8 & \\
+        \hline
+        7 & 0 & 1 & 1 & 8 & & \\
+        \hline
+        8 & 1 & 1 & 1 & & & \\
+        \hline
+      \end{tabular}
+    \end{tabular}
+  \end{tabular}
+
+  \caption{Cube Vertices and Edges.}
+  \label{verticetable}
+\end{table*}
 
 \begin{itemize}
 
@@ -286,74 +355,6 @@ cube_edges_binary <- function(p) {
 
 \end{itemize}
 
-\begin{table*}[htp]
-  \centering
-  \begin{tabular}{c c}
-
-    \begin{tabular}{c}
-
-      1-D: \\
-
-      \begin{tabular}{|l ||r|| r|}
-        \hline
-        row \# & 1 & edges \\
-        \hline
-        1 & 0 & 2\\
-        \hline
-        2 & 1 & \\
-        \hline
-      \end{tabular}
-      \\
-      \\
-      2-D: \\
-
-      \begin{tabular}{|l ||r|r|| r r|}
-        \hline
-        row \# & 1 & 2 & \multicolumn{2}{c|}{edges} \\
-        \hline
-        1 & 0 & 0 & 2 & 3\\
-        \hline
-        2 & 1 & 0 &  & 4 \\
-        \hline
-        3 & 0 & 1 &  4 & \\
-        \hline
-        4 & 1 & 1 &  & \\
-        \hline
-      \end{tabular}
-    \end{tabular}
-
-    &
-
-    \begin{tabular}{c}
-      3-D: \\
-
-      \begin{tabular}{|l ||r|r|r|| r r r|}
-        \hline
-        row \# & 1 & 2 & 3 & \multicolumn{3}{c|}{edges} \\
-        \hline
-        1 & 0 & 0& 0 & 2 & 3 & 5\\
-        \hline
-        2 & 1 & 0 & 0 & & 4 & 6\\
-        \hline
-        3 & 0 & 1 & 0 & 4 & & 7\\
-        \hline
-        4 & 1 & 1 & 0 & & & 8\\
-        \hline
-        5 & 0 & 0 & 1 & 6 & 7 & \\
-        \hline
-        6 & 1 & 0 & 1 & & 8 & \\
-        \hline
-        7 & 0 & 1 & 1 & 8 & & \\
-        \hline
-        8 & 1 & 1 & 1 & & & \\
-        \hline
-      \end{tabular}
-    \end{tabular}
-  \end{tabular}
-
-  \caption{Cube Vertices and Edges.}
-  \label{verticetable}
-\end{table*}
 
 \subsection{Solid Cube}
 
