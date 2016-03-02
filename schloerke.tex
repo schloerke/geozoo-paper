@@ -143,15 +143,15 @@ result, which is shown for $p=1,2,3$ in Table \ref{verticetable}.
     process is repeated $(p-1)$ times, to obtain a $p-$D cube.
 
 \begin{verbatim}
-cube.iterate <- function(p) {
-  set <- rbind(0, 1)
-    for (i in 1:(p - 1)) {
-      set <- rbind(
-        cbind(set, 0),
-        cbind(set, 1)
-      )
+cube_iterate <- function(p) {
+  if (p == 1) {
+    return(rbind(0, 1))
   }
-  set
+  lower_dim_cube <- cube_iterate(p - 1)
+  rbind(
+    cbind(lower_dim_cube, 0),
+    cbind(lower_dim_cube, 1)
+  )
 }
 \end{verbatim}
 
