@@ -388,10 +388,8 @@ easy to generate, using either random sampling or a fixed grid.
     number of points is capped at 50000 points for speed of viewing.
 
 \begin{verbatim}
-cube.solid.random <- function(p, n = 850 * 2 ^ p) {
-  x <- matrix(runif(n * p), ncol = p)
-  colnames(x) <- paste("X", 1:p, sep = "")
-  x
+cube_solid_random <- function(p, n = 850 * 2 ^ p) {
+  matrix(runif(n * p), ncol = p)
 }
 \end{verbatim}
 
@@ -403,7 +401,7 @@ cube.solid.random <- function(p, n = 850 * 2 ^ p) {
     to be varied.
 
 \begin{verbatim}
-cube.solid.grid <- function(p, n) {
+cube_solid_grid <- function(p, n) {
   grid <- list(seq(0, 1, length = n))
   do.call(expand.grid, rep(grid, p))
 }
@@ -505,14 +503,13 @@ standard normal distribution and then normalize its length. The top
 row of Figure \ref{holsolidsphere} shows the results.
 
 \begin{verbatim}
-norm.vec <- function(x) {
-  x <- x / sqrt(sum(x ^ 2))
-  x
+norm_vec <- function(x) {
+  x / sqrt(sum(x ^ 2))
 }
 
-sphere.hollow <- function(p, n = p * 500) {
+sphere_hollow <- function(p, n = p * 500) {
   x <- matrix(rnorm(n * p), ncol = p)
-  t(apply(x, 1, norm.vec))
+  t(apply(x, 1, norm_vec))
 }
 \end{verbatim}
 
@@ -562,8 +559,8 @@ by the area.  Raising the vector length to the power $1/p$, 1/2 in our
 example, corrects for the volume.
 
 \begin{verbatim}
-sphere.solid.random <- function(p, n = p * 500) {
-  sphere.hollow(p, n) * runif(n) ^ (1 / p)
+sphere_solid_random <- function(p, n = p * 500) {
+  sphere_hollow(p, n) * runif(n) ^ (1 / p)
 }
 \end{verbatim}
 
