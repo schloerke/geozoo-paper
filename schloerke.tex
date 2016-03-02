@@ -270,15 +270,17 @@ cube_edges_binomial <- function(cube) {
 
 \begin{verbatim}
 library(bitops)
-cube.edges.binary <- function(p) {
+cube_edges_binary <- function(p) {
   vertices <- 0:(2 ^ p - 1)
-  from <- vertices[
-    rep(1:length(vertices), each = p)
+  from_verts <- vertices[
+    rep(1:(2 ^ p), each = p)
   ]
-  edges <- 2 ^ (0:(p - 1))
-  to <- bitXor(from, edges)
-  cube.wires <- subset(data.frame(from, to), from < to) + 1
-  cube.wires
+  from_to <- data.frame(
+    from = from_verts,
+    to = bitXor(from_verts, 2 ^ (0:(p - 1)))
+  )
+  from_to <- subset(from_to, from < to) + 1
+  from_to
 }
 \end{verbatim}
 
