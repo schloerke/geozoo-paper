@@ -62,7 +62,7 @@ distributions.
 the code to create the geometric shapes. Code fragments, describing
 the key components of the algorithms for generating the shapes, are
 included in this paper. The shapes in the library are best viewed using the dynamic graphical
-method called a tour \citep{AS85}, such as that available in GGobi
+method called a tour \citep{AS85,BCAH05,ClBW07}, such as that available in GGobi
 \citep{STLBC02} and the \CRANpkg{tourr} R package~\citep{WCHB11}. 
 
 The structure of the paper is that basic shapes are described first
@@ -256,7 +256,7 @@ efficient but less intuitive.
     \end{tabular}
   \end{tabular}
 
-  \caption{Cube Vertices and Edges.}
+  \caption{1-D, 2-D and 3-D cube vertices and edges.}
   \label{verticetable}
 \end{table*}
 
@@ -367,8 +367,8 @@ easy to generate, using either random sampling or a fixed grid.
 \includegraphics[width=1in]{fig/cube-2-solid.pdf} & \includegraphics[width=1in]{fig/cube-3-solid.pdf} & \includegraphics[width=1in]{fig/cube-4-solid.pdf} \\
 \includegraphics[width=1in]{fig/cube-2-solideq-9.pdf} & \includegraphics[width=1in]{fig/cube-3-solideq-9.pdf} & \includegraphics[width=1in]{fig/cube-4-solideq-9.pdf}
 \end{tabular}
-\caption{Solid cubes in 2-D, 3-D, and 4-D (top) random samples from
-  $p$ uniform distributions (bottom) fixed grid.}
+\caption{Solid cubes in 2-D, 3-D, and 4-D (top) independent random samples from
+  $p$ uniform distributions (bottom) fixed grid. As dimension increases, the vertices look sparse, more so with the random samples. }
 \label{solcube}
 \end{figure}
 
@@ -380,12 +380,11 @@ easy to generate, using either random sampling or a fixed grid.
     uniform distribution between 0 and 1. Generating $p$ random
     uniform values creates a $p$-dimensional vector corresponding to a
     point inside a $p$-dimensional cube. The number of points needed
-    to make the cube appear solid increases as $p$ increases. The
-    volume of the cube doubles with each dimension. For example, a 3-D
-    cube with side length 2 has the volume $2^3=8$, and a 4-D cube
-    with the same side length has the volume $2^4=16$. Thus the number
-    of points must be at least doubled for each increase in
-    dimension. In our function, we use a base of 850 points. The total
+    to make the cube appear solid increases as $p$ increases, exponentially.  For example, a 3-D
+    cube with $k$ points on each side has  $k^3$ total points, and a 4-D cube
+    with the same $k$ points per side $k^4$ total points. Thus the number
+    of points must be increased substantially for each increase in
+    dimension, for the shape to look similarly solid. In our function, we use a base of 850 points, and the total
     number of points is capped at 50000 points for speed of viewing.
 
 \begin{verbatim}
@@ -412,8 +411,7 @@ cube_solid_grid <- function(p, n) {
 There are advantages and disadvantages.  The first method, random
 points, produces a solid cube that looks more solid, but as $p$
 increases points near the vertices become more scarce.  With
-equidistant points the filled cubes look more structured, and there
-are always points near the vertices.
+equidistant points the filled cubes better fills the vertex regions, but the structure  produces regular patterns which can be distracting to a viewer.
 
 \subsection{Hollow Cube}
 
@@ -428,9 +426,7 @@ For a 3-D cube, the $X_1$ and $X_2$ components of the cube are given
 random values and the $X_3$ components would be set to 0 in the first
 half and 1 in the second half. The process would then be repeated for
 the remaining columns, as shown in Figure \ref{faces}. This will
-create six 2-D squares which form the faces of a 3-D cube.
-
-Figure \ref{4faces} shows the faces of a 4-D cube being built. The
+create six 2-D squares which form the faces of a 3-D cube. The bottom row shows the faces of a 4-D cube being built. The
 left side plot shows the first pair of faces, a solid 3-D cube in
 $X_1, X_2, X_3$, with fixed values on the fourth dimension $X_4$. The
 subsequent plots show the remaining faces.
@@ -442,34 +438,25 @@ subsequent plots show the remaining faces.
     \includegraphics[width=.9in]{fig/cube-x-y.pdf} &
     \includegraphics[width=.9in]{fig/cube-x-y-z.pdf}
   \end{tabular}
+\begin{tabular}{cccc}
+  \includegraphics[width=1in]{fig/cube-4-face-1-1.pdf} & \includegraphics[width=1in]{fig/cube-4-face-2-1.pdf} &
+  \includegraphics[width=1in]{fig/cube-4-face-3-1.pdf} &\includegraphics[width=1in]{fig/cube-4-face-4-1.pdf}
+\end{tabular}
 
-  \caption{Faces of a 3-D cube, $X_3$, $X_2$\&$X_3$,
-      $X_1$\&$X_2$\&$X_3$.}
+  \caption{Faces of a 3-D cube (top) and a 4-D cube (bottom), obtained by fixing one column of values to be 0 or 1, and allowing the other columns to vary freely between 0 and 1.}
   \label{faces}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\begin{tabular}{c c}
-  \includegraphics[width=1in]{fig/cube-4-face-1-1.pdf} & \includegraphics[width=1in]{fig/cube-4-face-2-1.pdf} \\
-  \includegraphics[width=1in]{fig/cube-4-face-3-1.pdf} &\includegraphics[width=1in]{fig/cube-4-face-4-1.pdf}
-\end{tabular}
-\caption{Faces of a 4-D cube, $X_4$, $X_3$\&$X_4$, $X_2$\&$X_3$\&$X_4$,
-  $X_1$\&$X_2$\&$X_3$\&$X_4$.}
-\label{4faces}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\begin{tabular}{|c|c|}
+\begin{tabular}{|c|c|c|c|}
 \hline
-\includegraphics[width=1in]{fig/cube-3-vert.pdf} & \includegraphics[width=1in]{fig/cube-5-vert.pdf} \\
-\hline
+\includegraphics[width=1in]{fig/cube-3-vert.pdf} & \includegraphics[width=1in]{fig/cube-5-vert.pdf} &
 \includegraphics[width=1in]{fig/cube-10-vert.pdf} & \includegraphics[width=1in]{fig/cube-15-vert.pdf} \\
 \hline
 \end{tabular}
-\caption{Vertices of cubes: 3-D, 5-D, 10-D, and 15-D. They look more
-  rounded as the dimension increases.}
+\caption{Vertices of cubes, (left to right) 3-D, 5-D, 10-D, and 15-D. Cubes look more
+  rounded in projections as the dimension increases.}
 \end{figure}
 
 \subsection{High-D Cubes Look Spherical!}
@@ -486,8 +473,7 @@ increases, the combining the values operates like averaging the values
 in many dimensions, resulting in views that look Gaussian. Another way
 to think about it is that we are looking at rotated cubes rather than
 a cube through its square face and this gets increasingly rounded as
-the dimension of increases. (More details about tours can be found in
-many papers, including \cite{BCAH05}, \cite{ClBW07}).
+the dimension of increases. 
 
 
 \section{Spheres}
