@@ -201,18 +201,21 @@ and edge lists for $p=1, 2$ and $3$.
     compute as $p$ increases.
 
 \begin{verbatim}
-cube.edges.length1 <- function(cube) {
-  a <- 2 ^ ncol(cube)
-  cube.lines <- NULL
-  for (i in 1:(a - 1)) {
-    for (j in (i + 1):a) {
+cube_edges_length1 <- function(cube) {
+  p <- ncol(cube)
+  num_points <- 2 ^ p
+  from_to <- matrix(NA, nrow = num_points * p / 2, ncol = 2)
+  next_store_position <- 1
+  for (i in 1:(num_points - 1)) {
+    for (j in (i + 1):num_points) {
       d1 <- sum((cube[i, ] - cube[j, ]) ^ 2)
-      if (d1 == 1){
-        cube.lines <- rbind(cube.lines, c(i,j))
+      if (d1 == 1) {
+        from_to[next_store_position, ] <- c(i,j)
+        next_store_position <- next_store_position + 1
       }
     }
   }
-  cube.lines
+  from_to
 }
 \end{verbatim}
 
