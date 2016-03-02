@@ -58,7 +58,7 @@ distributions.
 the code to create the geometric shapes. Code fragments, describing
 the key components of the algorithms for generating the shapes, are
 included in this paper. The shapes in the library are best viewed using the dynamic graphical method called a tour \citep{AS85,BCAH05,ClBW07}, such as that available in GGobi
-\citep{STLBC02} and the \CRANpkg{tourr} R package~\citep{WCHB11}. 
+\citep{STLBC02} and the \CRANpkg{tourr} R package~\citep{WCHB11}.
 
 The structure of the paper is that basic shapes are described first
 followed by more complex shapes, in this order,
@@ -174,7 +174,7 @@ cube_permute <- function(p) {
 
 \subsection{Completing the Wire Frame}
 
-The wire frame for a cube draws the edges of the cube, 
+The wire frame for a cube draws the edges of the cube,
 connecting all points that differ in one of the values, e.g. $(0,0,0)$
 and $(1,0,0)$, or $(0,0,0)$ and $(0,1,0)$ for a 3-D cube. Each edge is
 a vector of length $1$, and it is defined by specifying the row
@@ -184,7 +184,7 @@ a 3-D cube $(2,4)$ would connect rows $ (1,0,0)$ and $
 and edge lists for $p=1, 2$ and $3$. Edges are not ordered $(1,2)=(2,1)$, and we use just
 one of the two, with the smaller number first. Here are three ways to
 generate an edge set, the last being the most computationally
-efficient but less intuitive. 
+efficient but less intuitive.
 
 \begin{table*}[htp]
   \centering
@@ -468,7 +468,7 @@ increases, the combining the values operates like averaging the values
 in many dimensions, resulting in views that look Gaussian. Another way
 to think about it is that we are looking at rotated cubes rather than
 a cube through its square face and this gets increasingly rounded as
-the dimension of increases. 
+the dimension of increases.
 
 
 \section{Spheres}
@@ -665,7 +665,7 @@ A polytope is a generalized term of a geometric shape in any
 dimension. A polygon is a 2-D polytope. A polyhedron is a 3-D
 polytope. A polychoron is a 4-D polytope. Beyond that we typically use
 polytope to refer to any $p$-gon.  Our polychoron data comes from Paul
-Bourke's website \citep{PBPlatonic}, where there is also information on some of the 
+Bourke's website \citep{PBPlatonic}, where there is also information on some of the
 objects that have been covered (hypercube, simplex) in the preceding sections of this paper, and new
 objects, 24-cell, 120-cell, 600-cell (Figure \ref{polytope}).  The explanations of these
 polytopes is very clear. The data has been formatted into XML files
