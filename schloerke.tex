@@ -603,14 +603,16 @@ equilateral triangle, (0.7071,0.4082), (-0.7071,0.4082), (0.0000,
 
 \begin{verbatim}
 helmert <- function(d) {
-  helmert <- rep(1 / sqrt(d), d)
+  helmert_mat <- matrix(NA, nrow = d, ncol = d)
+  helmert_mat[1, ] <- rep(1 / sqrt(d), d)
   for (i in 1:(d - 1)) {
-    x <- rep(1 / sqrt(i * (i + 1)), i)
-    x <- c(x, -i / sqrt(i * (i + 1)))
-    x <- c(x, rep(0, d - i - 1))
-    helmert <- rbind(helmert, x)
+    helmert_mat[i + 1, ] <- c(
+      rep(1 / sqrt(i * (i + 1)), i),
+      -i / sqrt(i * (i + 1)),
+      rep(0, d - i - 1)
+    )
   }
-  helmert
+  helmert_mat
 }
 
 simplex <- function(p) {
@@ -623,13 +625,14 @@ simplex <- function(p) {
 }
 \end{verbatim}
 
+% TODO ``two lines of code''
 The wire frame for a simplex connects ever point to every other point, and can
 be computed in just two lines of code, following method 2 of the cube
 vertices. It makes a list of all combinations of each row number and then
 removes the lines that connect a point to itself.
 
 \begin{verbatim}
-simplex.wires <- function(simplex) {
+simplex_wires <- function(simplex) {
   wires <- do.call(
     expand.grid,
     list(
