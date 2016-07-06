@@ -464,7 +464,7 @@ cube_face_random <- function(p, n = 850 * 2 ^ (p - 1)) {
   faces <- cube_solid_random(p, 2 * p * n)
   for (i in seq_len(p)) {
     faces[(n * (i - 1) + 1):(n * i), i] <- 0
-    faces[(n * (i - 1) + 1):(n * i), i] <- 1
+    faces[(n * (i - 1) + 1):(n * i) + (p * face_n), i] <- 1
   }
   faces
 }
