@@ -1,12 +1,17 @@
 Format: http://matt.might.net/articles/peer-review-rebuttals/
 
-> -- Reviewer 1 --
+
+# Reviewer \#1
 
 Thank you for a great review! We really appreciate the thorough review!
 
 Best,
 Barret
 
+
+## Rebuttal
+
+The comments were kept in the order of the reviewer's comments and broken into multiple sections for each point.
 
 > In a few places the term "calibrate you eyes" is used. Much better might be
 > "train our brains" ... our eyes are just the data acquisition system, the real
