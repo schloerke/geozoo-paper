@@ -1,5 +1,6 @@
 Format: http://matt.might.net/articles/peer-review-rebuttals/
 
+Overall diff: [compare before_reviews to master](https://github.com/schloerke/geozoo-paper/compare/before_reviews...master#diff-d0b5d3764cecf6678b58c4ea9d6c63bd)
 
 # Reviewer \#1
 
