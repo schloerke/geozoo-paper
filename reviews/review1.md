@@ -63,7 +63,7 @@ This is already talked about in the first paragraph of the 'Hollow cube' section
 > For the hollow cube section, might not regular grids on the faces be
 > significantly more insightful that random fills? See later.
 
-Will add a new function for equidistance cube "face" in geozoo R package. %TODO
+Added equidistant points for a cube face function into the geozoo package. ([Link to geozoo commit](https://github.com/schloerke/geozoo/commit/cab44c6a61e5430c456d7a65379d7ab5e7b5d4c5#diff-156b96e5e11b93d7e38335996549a3a1R177))
 
 Will explain both equidistant and random methods. Added in ([f2118b9](https://github.com/schloerke/geozoo-paper/commit/f2118b9))
 
