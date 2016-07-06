@@ -399,35 +399,73 @@ equidistant points the filled cubes better fills the vertex regions, but the str
 
 The ``face'' of a cube is a surface that is one dimension lower than
 that of the cube.  For example, a face of a 3-D cube is a 2-D square
-and a face of a 4-D cube is a 3-D cube. To generate points on the
-faces of a cube, random points are created in all dimensions except
-one. The last dimension is given the value of $0$ or $1$, to create
-the opposing faces.
+and a face of a 4-D cube is a 3-D cube.
 
-For a 3-D cube, the $X_1$ and $X_2$ components of the cube are given
-random values and the $X_3$ components would be set to 0 in the first
-half and 1 in the second half. The process would then be repeated for
-the remaining columns, as shown in Figure \ref{faces}. This will
-create six 2-D squares which form the faces of a 3-D cube. The bottom row shows the faces of a 4-D cube being built. The
-left side plot shows the first pair of faces, a solid 3-D cube in
-$X_1, X_2, X_3$, with fixed values on the fourth dimension $X_4$. The
-subsequent plots show the remaining faces.
+To generate points on the faces of a cube, points are created in all dimensions
+except one. The remaining dimension is given the value of $0$ or $1$, to create
+the opposing faces.  Because the face of a cube is a $p-1$-dimensional cube with a
+$0$ or $1$ in the remaining column, we may perform two different methods to save
+the number of calculations required to produce the $p$-dimensional cube's faces.
 
-\begin{figure}[ht]
-  \centering
-  \begin{tabular}{c c c}
-    \includegraphics[width=.9in]{fig/cube-x.pdf} &
-    \includegraphics[width=.9in]{fig/cube-x-y.pdf} &
-    \includegraphics[width=.9in]{fig/cube-x-y-z.pdf}
+\begin{itemize}
+
+  \item {\bf Method 1:} Equidistant faces.
+
+  Equidistant faces may leverage the fact that the each ``face'' contains the same data.  Therefore, we may calculate a single $p-1$-dimensional equidistant cube and place it in the return matrix multiple times with the $i$th column missing from the return matrix.  The number of rows of the return matrix is equivalent to $2 * p * nrow(face)$ with the first half of the return matrix being $0$'s and the last half being $1$'s.  The input $n$ is supplied directly to the $cube\_solid\_grid$ function.
+
+\begin{example}
+cube_face_grid <- function(p, n = 10) {
+  face <- cube_solid_grid(p - 1, n)
+  face_n <- nrow(face)
+  faces <- do.call(data.frame, rep(list(X = rep(0:1, each = p * face_n)), p))
+  for(i in seq_len(p)) {
+    faces[(face_n * (i - 1) + 1):(face_n * i), -i] <- face
+    faces[(face_n * (i - 1) + 1):(face_n * i) + (p * face_n), -i] <- face
+  }
+  return(as.matrix(faces))
+}
+\end{example}
+
+  \item {\bf Method 2:} Random uniform faces.
+
+  Naively creating a 3-D cube, the $X_1$ and $X_2$ components of the cube are given random values and the $X_3$ components would be set to $0$ in the first
+  half and $1$ in the second half. The process would then be repeated for
+  the remaining columns, as shown in Figure \ref{faces}. This will
+  create six 2-D squares which form the faces of a 3-D cube. The bottom row shows the faces of a 4-D cube being built. The
+  left side plot shows the first pair of faces, a solid 3-D cube in
+  $X_1, X_2, X_3$, with fixed values on the fourth dimension $X_4$. The
+  subsequent plots show the remaining faces.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{tabular}{c c c}
+      \includegraphics[width=.9in]{fig/cube-x.pdf} &
+      \includegraphics[width=.9in]{fig/cube-x-y.pdf} &
+      \includegraphics[width=.9in]{fig/cube-x-y-z.pdf}
+    \end{tabular}
+  \begin{tabular}{cccc}
+    \includegraphics[width=1in]{fig/cube-4-face-1-1.pdf} & \includegraphics[width=1in]{fig/cube-4-face-2-1.pdf} &
+    \includegraphics[width=1in]{fig/cube-4-face-3-1.pdf} &\includegraphics[width=1in]{fig/cube-4-face-4-1.pdf}
   \end{tabular}
-\begin{tabular}{cccc}
-  \includegraphics[width=1in]{fig/cube-4-face-1-1.pdf} & \includegraphics[width=1in]{fig/cube-4-face-2-1.pdf} &
-  \includegraphics[width=1in]{fig/cube-4-face-3-1.pdf} &\includegraphics[width=1in]{fig/cube-4-face-4-1.pdf}
-\end{tabular}
 
-  \caption{Faces of a 3-D cube (top row) and a 4-D cube (bottom row), obtained by fixing one column of values to be 0 or 1, and allowing the other columns to vary freely between 0 and 1.}
-  \label{faces}
-\end{figure}
+    \caption{Faces of a 3-D cube (top row) and a 4-D cube (bottom row), obtained by fixing one column of values to be 0 or 1, and allowing the other columns to vary freely between 0 and 1.}
+    \label{faces}
+  \end{figure}
+
+  Unlike the equidistant faces of a cube, each random uniform face must be different from every other face.  To save repetitive calculations, we leverage the fact that a $p$-dimensional random uniform cube with one column missing is equivalent a $p-1$-dimensional random uniform cube.  Therefore, we generate a $p$-dimensional cube and insert $0$'s or $1$'s for each of the corresponding faces in each dimension.  The input $n$ matches the number of random points for a $p-1$-dimensional cube.
+
+\begin{example}
+cube_face_random <- function(p, n = 850 * 2 ^ (p - 1)) {
+  faces <- cube_solid_random(p, 2 * p * n)
+  for (i in seq_len(p)) {
+    faces[(n * (i - 1) + 1):(n * i), i] <- 0
+    faces[(n * (i - 1) + 1):(n * i), i] <- 1
+  }
+  faces
+}
+\end{example}
+
+\end{itemize}
 
 \begin{figure}[ht]
 \centering
@@ -440,6 +478,8 @@ subsequent plots show the remaining faces.
 \caption{Vertices of cubes, (left to right) 3-D, 5-D, 10-D, and 15-D. Cubes look more
   rounded in projections as the dimension increases.}
 \end{figure}
+
+
 
 \subsection{High-D cubes look spherical!}
 
