@@ -15,12 +15,12 @@ Barret
 > An alternative would be "visualise", in the context of proving insight into
 > complicated or high dimensional data.
 
-Changed to some form of "train our brains". (f3e6ee1)
+Changed to some form of "train our brains". ([f3e6ee1](https://github.com/schloerke/geozoo-paper/commit/f3e6ee1))
 
 
 > Page 1, cube section. Could add a 0-D cube is a point.
 
-Added. (299d9cc)
+Added. ([299d9cc](https://github.com/schloerke/geozoo-paper/commit/299d9cc))
 
 
 > Page 1, in the description of the figure 1 I think a bit more rigor could be
@@ -28,7 +28,7 @@ Added. (299d9cc)
 > dimension is done by analogy to lower dimensions. "double the cube" ... how
 > about "replicate and shift along an orthogonal axis".
 
-Used similar phrasing as suggested. (7c7bc57)
+Used similar phrasing as suggested. ([7c7bc57](https://github.com/schloerke/geozoo-paper/commit/7c7bc57))
 
 > Also at the point of figure 1 I don't see mention that it is showing a projection onto a 2D
 > surface. Obvious perhaps but explaining this more at the start sets the scene
@@ -36,7 +36,7 @@ Used similar phrasing as suggested. (7c7bc57)
 > projections and that some look the same as their lower dimension version (ie:
 > along a major axis).
 
-Addressed near beginning of paper and about projecting down to 2 dimensions. (f07ff9b)
+Addressed near beginning of paper and about projecting down to 2 dimensions. ([f07ff9b](https://github.com/schloerke/geozoo-paper/commit/f07ff9b))
 
 Did not want to talk about similar projections, as that is not the focus of this paper.
 
@@ -44,7 +44,7 @@ Did not want to talk about similar projections, as that is not the focus of this
 > "An alternative way to think [of the vertices of a] of a high-dimensional cube
 > is that it can be considered ...". Should have "vertices" in there somewhere.
 
-Added! (b19df9a)
+Added! ([b19df9a](https://github.com/schloerke/geozoo-paper/commit/b19df9a))
 
 
 > The rule for edges is given, how about the generation rules for faces, or
@@ -58,7 +58,7 @@ This is already talked about in the first paragraph of the 'Hollow cube' section
 
 Will add a new function for equidistance cube "face" in geozoo R package. %TODO
 
-Will explain both equidistant and random methods. Added in (f2118b9)
+Will explain both equidistant and random methods. Added in ([f2118b9](https://github.com/schloerke/geozoo-paper/commit/f2118b9))
 
 
 > A typo I think in the Sphere section "A sphere can be described as all points
@@ -67,7 +67,7 @@ Will explain both equidistant and random methods. Added in (f2118b9)
 > tightening up of some of the wording when describing the extensions to higher
 > dimensions based upon the same geometry in lower dimensions.
 
-Changed. (7e4ec63)
+Changed. ([7e4ec63](https://github.com/schloerke/geozoo-paper/commit/7e4ec63))
 
 
 > In the hollow sphere perhaps the description of how the points are created on
@@ -78,7 +78,7 @@ Changed. (7e4ec63)
 > length of this vector is greater than 1 then reject it, otherwise normalise it
 > and use it as a sample on the sphere.
 
-Added citation to the book "Statistics on Spheres" that explains the method. (046a202)
+Added citation to the book "Statistics on Spheres" that explains the method. ([046a202](https://github.com/schloerke/geozoo-paper/commit/046a202))
 
 We can't use rejection method described by reviewer.  There is more than 99% rejection at higher dimensions. This is talked about in the subsection after ("Don't reject the solid sphere!")
 
@@ -88,13 +88,13 @@ We can't use rejection method described by reviewer.  There is more than 99% rej
 > simplest polytope in that dimension, consisting of k+1 vertices. Or am I
 > getting confused with a regular simplex?
 
-Correct. A two-simplex is a triangle that lives in the 2D plain. Changed in (aa99906)
+Correct. A two-simplex is a triangle that lives in the 2D plain. Changed in ([aa99906](https://github.com/schloerke/geozoo-paper/commit/aa99906))
 
 
 > The section on ring torus takes up a disproportionate space (2 pages?) and I
 > don't think really adds anything to the paper.
 
-Added (1a4fd12)
+Added ([1a4fd12](https://github.com/schloerke/geozoo-paper/commit/1a4fd12))
 
 
 > Many of the links in the references don't work. I know this is a problem with
@@ -103,7 +103,7 @@ Added (1a4fd12)
 > some pubications for the reference to include the date at which the link
 > existed.
 
-Fixed! (0f47ae2)
+Fixed! ([0f47ae2](https://github.com/schloerke/geozoo-paper/commit/0f47ae2))
 
 
 > The references also have a "back link" into the paper, is that the style for
