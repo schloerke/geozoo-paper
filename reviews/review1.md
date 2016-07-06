@@ -1,6 +1,7 @@
 Format: http://matt.might.net/articles/peer-review-rebuttals/
 
 > -- Reviewer 1 --
+
 Thank you for a great review! We really appreciate the thorough review!
 
 Best,
@@ -13,10 +14,12 @@ Barret
 > with a 3D world, just the flatlanders only needed to deal with a 2D world.
 > An alternative would be "visualise", in the context of proving insight into
 > complicated or high dimensional data.
+
 Changed to some form of "train our brains". (f3e6ee1)
 
 
 > Page 1, cube section. Could add a 0-D cube is a point.
+
 Added. (299d9cc)
 
 
@@ -24,30 +27,35 @@ Added. (299d9cc)
 > used since this is the first time the notion of imagining a shape in higher
 > dimension is done by analogy to lower dimensions. "double the cube" ... how
 > about "replicate and shift along an orthogonal axis".
-Used similar phrasing as suggested. (7c7bc57)
 
+Used similar phrasing as suggested. (7c7bc57)
 
 > Also at the point of figure 1 I don't see mention that it is showing a projection onto a 2D
 > surface. Obvious perhaps but explaining this more at the start sets the scene
 > for the rest of the examples. Making it clear also of the infinity of
 > projections and that some look the same as their lower dimension version (ie:
 > along a major axis).
+
 Addressed near beginning of paper and about projecting down to 2 dimensions. (f07ff9b)
+
 Did not want to talk about similar projections, as that is not the focus of this paper.
 
 
 > "An alternative way to think [of the vertices of a] of a high-dimensional cube
 > is that it can be considered ...". Should have "vertices" in there somewhere.
+
 Added! (b19df9a)
 
 
 > The rule for edges is given, how about the generation rules for faces, or
 > hyperfaces?
+
 This is already talked about in the first paragraph of the 'Hollow cube' section.  Methods have also been added to address earlier reviewer points.
 
 
 > For the hollow cube section, might not regular grids on the faces be
 > significantly more insightful that random fills? See later.
+
 Will add a new function for equidistance cube "face" in geozoo R package. %TODO
 
 Will explain both equidistant and random methods. Added in (f2118b9)
@@ -58,6 +66,7 @@ Will explain both equidistant and random methods. Added in (f2118b9)
 > fixed radius away from the center of the sphere? In general there is a
 > tightening up of some of the wording when describing the extensions to higher
 > dimensions based upon the same geometry in lower dimensions.
+
 Changed. (7e4ec63)
 
 
@@ -68,6 +77,7 @@ Changed. (7e4ec63)
 > coordinates (x,y,z) each uniformly distributed on the interval [-1,1]. If the
 > length of this vector is greater than 1 then reject it, otherwise normalise it
 > and use it as a sample on the sphere.
+
 Added citation to the book "Statistics on Spheres" that explains the method. (046a202)
 
 We can't use rejection method described by reviewer.  There is more than 99% rejection at higher dimensions. This is talked about in the subsection after ("Don't reject the solid sphere!")
@@ -77,11 +87,13 @@ We can't use rejection method described by reviewer.  There is more than 99% rej
 > to be. Happy to stand corrected. I thought a k dimensional simplex was the
 > simplest polytope in that dimension, consisting of k+1 vertices. Or am I
 > getting confused with a regular simplex?
+
 Correct. A two-simplex is a triangle that lives in the 2D plain. Changed in (aa99906)
 
 
 > The section on ring torus takes up a disproportionate space (2 pages?) and I
 > don't think really adds anything to the paper.
+
 Added (1a4fd12)
 
 
@@ -90,11 +102,13 @@ Added (1a4fd12)
 > sure what the publication policy is on web links but it is the practice in
 > some pubications for the reference to include the date at which the link
 > existed.
+
 Fixed! (0f47ae2)
 
 
 > The references also have a "back link" into the paper, is that the style for
 > this publication?
+
 Yes. This is in the style provided.  (Thank you RJournal!)
 
 
@@ -171,11 +185,9 @@ Furnas and Buja (http://www.jstor.org/stable/1390897) talk about how they use hi
 
 
 
-# Show a couple videos of the objects in motion?
-#
-# Quiz on
-#   4 dim hollow sphere
-#   4 dim solid sphere
-#
-#   10 dim sphere
-#   10 dim cube
+<!-- Show a couple videos of the objects in motion?
+Quiz on
+ 4 dim hollow sphere
+ 4 dim solid sphere
+ 10 dim sphere
+ 10 dim cube -->
