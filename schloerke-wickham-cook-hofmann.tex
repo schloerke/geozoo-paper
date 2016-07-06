@@ -589,10 +589,10 @@ sphere_solid_random <- function(p, n = p * 500) {
 \section{Simplexes}
 
 Simplexes are one of the simplest objects to create and view. A $p$-D
-simplex is a shape that lives in one dimension less than $p$. It has
+simplex is a shape that is created in the $(p+1)$th dimension with
 vertices corresponding to the coordinate axes. The simplex vertices
 are then projected, using a Helmert matrix, into the
-$(p - 1)$-dimensional space in which it exists.
+$p$-dimensional space in which it exists.
 
 \begin{figure}[ht]
 \centering
@@ -604,8 +604,8 @@ $(p - 1)$-dimensional space in which it exists.
 \caption{Wireframe simplexes: 2-D, 3-D, 4-D, 5-D.}
 \end{figure}
 
-For example, a 3-D simplex has vertices at (1,0,0), (0,1,0), (0,0,1),
-which are reduced by the Helmert transformation to points a 2-D
+For example, a 2-D simplex has unprojected 3-D vertices at (1,0,0), (0,1,0), (0,0,1),
+which are reduced by the Helmert transformation to points in a 2-D
 equilateral triangle, (0.7071,0.4082), (-0.7071,0.4082), (0.0000,
 -0.8165).
 
@@ -978,7 +978,7 @@ shapes. For example, ranked data showing preferences for a fixed set
 of objects, can be mapped to high-dimensional polytopes \citep{Th93}.
 Values in a sample are commonly constrained to sum to a fixed number,
 for example, 100\%, forming compositional data. This type of data lies
-inside a $(p - 1)$-D simplex. Good experimental designs commonly have a
+inside a $p$-D simplex. Good experimental designs commonly have a
 geometric structure \citep{HSS99}. The ideas to examine boundaries of supervised classifiers described in \citet{CCWH08} build on the geometric shapes described here.
 
 We encourage the reader to look at the movies, and images, and
