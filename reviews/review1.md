@@ -101,7 +101,7 @@ Correct. A two-simplex is a triangle that lives in the 2D plain. Changed in ([aa
 > The section on ring torus takes up a disproportionate space (2 pages?) and I
 > don't think really adds anything to the paper.
 
-Added ([1a4fd12](https://github.com/schloerke/geozoo-paper/commit/1a4fd12))
+We've tweaked it a little, but we would really like to keep this section. It does represent one of the new methods for generating high-d shapes, and it isn't readily available elsewhere. ([1a4fd12](https://github.com/schloerke/geozoo-paper/commit/1a4fd12))
 
 
 > Many of the links in the references don't work. I know this is a problem with
@@ -148,12 +148,11 @@ For visualization, randomization helps the user as regular grid shapes or patter
 > this last example may be out of the scope of the paper requiring different
 > software tools.
 
-Correct, this last point is out of scope for this paper.
+These are actually not well-defined for high-dimensional shapes. 
 
 Thomas Banchoff's publication of "Illustrating beyond the Third Dimension" (http://www.math.brown.edu/~banchoff/howison/newbanchoff/publications/pdfs/IllustratingBeyond.pdf) show some possibilities of how "depth" can be achieved. Paul Bourke even does his on his website by highlighting the edges according to one dimension (http://paulbourke.net/geometry/hyperspace/). However, these approaches quickly fail when going beyond four dimensions.
 
-The publication on the software package XGobi (https://www.researchgate.net/publication/2248028_XGobi_Interactive_Dynamic_Data_Visualization_in_the_X_Window_System) talks about using a 'tour' to visit whole data space. 'Touring' the data really helps with letting the difference between a solid object and a hollow object.  Points on a surface will move at similar rates, while points in the middle of an object will move at variable rates. The tour is what is currently used to visualize anything that is produced in the geozoo R package. Unfortunately, we can not reproduce the moving tour in the paper.
-
+The publication on the software package XGobi (https://www.researchgate.net/publication/2248028_XGobi_Interactive_Dynamic_Data_Visualization_in_the_X_Window_System) talks about using a 'tour' to all possible projections of the data space. 'Touring' the data using scatterplots really helps with seeing the difference between a solid and a hollow object.  Points on a surface will move at similar rates, while points in the middle of an object will move at variable rates. The tour is what is currently used to visualize anything that is produced in the geozoo R package. If the R journal is willing we could make videos to embed in the pdf for the final document, at least if viewed online the reader could see the shapes touring.
 
 Furnas and Buja (http://www.jstor.org/stable/1390897) talk about how they use highlighting to visualize sub objects within the over-all object while projecting down to the second dimension.  (Section 6 with examples in section 7)
 
