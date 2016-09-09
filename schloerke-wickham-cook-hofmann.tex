@@ -24,7 +24,7 @@ A library of common geometric shapes can be used to train our brains for underst
 high-dimensional Euclidean space. This article describes the methods
 for producing cubes, spheres, simplexes, and tori in multiple
 dimensions. It also describes new ways to
-define and generate high-dimensional tori. The algorithms are described, critical code chunks are given,  and a large collection of generated data are provided.  These are available in the R package \CRANpkg{geozoo}, and selected
+define and generate high-dimensional tori. The algorithms are described, critical code chunks are given,  and a large collection of generated data are provided. These are available in the R package \CRANpkg{geozoo}, and selected
 movies and images, are available on the GeoZoo web site (\url{http://schloerke.github.io/geozoo/}).
 }
 
@@ -66,7 +66,7 @@ convex shapes. A 0-D cube is a single point. A 1-D cube is a line segment.
 A 2-D cube is a square and a 3-D cube is a box.
 
 The 4-D cube may be hard to imagine, partly because we are accustomed
-to describing our physical world using only three dimensions.  The
+to describing our physical world using only three dimensions. The
 leap to 4-D is more understandable after watching the movie
 ``Flatland'' \citep{Ma65} or reading the novella of the same name
 \citep{Ab1884}. In ``Flatland'', the world is 2-D and characters struggle
@@ -319,7 +319,7 @@ cube_edges_binomial <- function(cube) {
     a single bit flipped. For example, $011$ connects to $111$, $001$
     and $010$ (vertex 3 connects to 7, 1, and 2). We can flip a single
     bit with the \emph{exclusive or} function, $011 \oplus 100 = 111$, $011
-    \oplus 010 = 001$, $011 \oplus 001 = 010$.  This leads to a fast
+    \oplus 010 = 001$, $011 \oplus 001 = 010$. This leads to a fast
     and efficient method for generating the edges.
 
 \begin{example}
@@ -365,7 +365,7 @@ easy to generate, using either random sampling or a fixed grid.
     uniform distribution between 0 and 1. Generating $p$ random
     uniform values creates a $p$-dimensional vector corresponding to a
     point inside a $p$-dimensional cube. The number of points needed
-    to make the cube appear solid increases exponentially as $p$ increases.  For example, a 3-D
+    to make the cube appear solid increases exponentially as $p$ increases. For example, a 3-D
     cube with $k$ points on each side has  $k^3$ total points, and a 4-D cube
     with the same $k$ points per side $k^4$ total points. Thus, every time the dimension is increased, the number
     of points must be increased substantially for the shape to look similarly solid. In our \code{cube\_solid\_random} function, we use a base of 850 points, and the total
@@ -392,26 +392,26 @@ cube_solid_grid <- function(p, n) {
 \end{example}
 \end{itemize}
 
-There are advantages and disadvantages to the methods provided.  The first method, random uniform
+There are advantages and disadvantages to the methods provided. The first method, random uniform
 points, produces a solid cube that looks more solid, but as $p$
-increases, points near the vertices become more scarce.  The second method, equidistant points, fills the vertex regions, but the structure produces regular patterns which can be distracting to the viewer.
+increases, points near the vertices become more scarce. The second method, equidistant points, fills the vertex regions, but the structure produces regular patterns which can be distracting to the viewer.
 
 \subsection{Hollow cube}
 
 The ``face'' of a cube is a surface that is one dimension lower than
-that of the cube.  For example, a face of a 3-D cube is a 2-D square
+that of the cube. For example, a face of a 3-D cube is a 2-D square
 and a face of a 4-D cube is a 3-D cube.
 
 To generate points on the faces of a cube, points are created in all dimensions
 except one. The remaining dimension is given the value $0$ or $1$, to create
-the opposing faces.  Because the face of a cube is a $(p-1)$-dimensional cube with a
+the opposing faces. Because the face of a cube is a $(p-1)$-dimensional cube with a
 $0$ or $1$ in the remaining column, we may perform two different methods to produce the $p$-dimensional cube's faces.
 
 \begin{itemize}
 
   \item {\bf Method 1:} Equidistant faces.
 
-  Equidistant faces may leverage the fact that each ``face'' contains the same data.  Therefore, we may calculate a single $(p-1)$-dimensional equidistant cube and place it in the return matrix multiple times with the $i$th column missing from the return matrix.  The number of rows of the return matrix is equivalent to $2 * p * nrow(face)$ with the first half of the return matrix being $0$'s and the last half being $1$'s.  The input $n$ is supplied directly to the $cube\_solid\_grid$ function.
+  Equidistant faces may leverage the fact that each ``face'' contains the same data. Therefore, we may calculate a single $(p-1)$-dimensional equidistant cube and place it in the return matrix multiple times with the $i$th column missing from the return matrix. The number of rows of the return matrix is equivalent to $2 * p * nrow(face)$ with the first half of the return matrix being $0$'s and the last half being $1$'s. The input $n$ is supplied directly to the $cube\_solid\_grid$ function.
 
 \begin{example}
 cube_face_grid <- function(p, n = 10) {
@@ -452,7 +452,7 @@ cube_face_grid <- function(p, n = 10) {
     \label{faces}
   \end{figure}
 
-  Unlike the equidistant faces of a cube, each random uniform face must be different from every other face.  To avoid repetitive calculations, we leverage the fact that a $p$-dimensional random uniform cube with one column missing is equivalent a $(p-1)$-dimensional random uniform cube.  Therefore, we generate a $p$-dimensional cube and insert $0$'s or $1$'s for each of the corresponding faces in each dimension.  The input $n$ matches the number of random points for a $(p-1)$-dimensional cube.
+  Unlike the equidistant faces of a cube, each random uniform face must be different from every other face. To avoid repetitive calculations, we leverage the fact that a $p$-dimensional random uniform cube with one column missing is equivalent a $(p-1)$-dimensional random uniform cube. Therefore, we generate a $p$-dimensional cube and insert $0$'s or $1$'s for each of the corresponding faces in each dimension. The input $n$ matches the number of random points for a $(p-1)$-dimensional cube.
 
 \begin{example}
 cube_face_random <- function(p, n = 850 * 2 ^ (p - 1)) {
@@ -487,7 +487,7 @@ As the dimension increases, the shape of the cube appears more rounded than squa
 projection. Explaination is given in
 \citet{DF84} and is related to the Central Limit Theorem. When we use
 a tour to visualize high-dimensional data we examine low-dimensional
-projections.  Consider the axes for a $p$-dimensional space labeled as
+projections. Consider the axes for a $p$-dimensional space labeled as
 $X_1, ..., X_p$. A 1-D projection is generated by taking a linear
 combination of these axes, such as $a_1X_a+...+a_pX_p$. The squared
 values of $a_j, j=1, ..., p$ are constrained to sum to 1. As $p$
@@ -501,7 +501,7 @@ the dimension increases.
 \section{Spheres}
 
 A sphere can be described as all
-points within a fixed radius around a fixed {$\mathbf{zero}_p$}, $\{X: X_1^2+\dots + X_p^2 \leq 1\}$.  A hollow sphere is the set of points with radius equal to 1, $\{X: X_1^2+\dots + X_p^2 = 1\}$. Generating the hollow sphere is simpler than the solid sphere.
+points within a fixed radius around a fixed {$\mathbf{zero}_p$}, $\{X: X_1^2+\dots + X_p^2 \leq 1\}$. A hollow sphere is the set of points with radius equal to 1, $\{X: X_1^2+\dots + X_p^2 = 1\}$. Generating the hollow sphere is simpler than the solid sphere.
 
 \subsection{Hollow sphere}
 
@@ -558,12 +558,12 @@ $1/p$ to adjust for the volume increase with $p$, resulting in points
 spread evenly throughout the inside of the sphere (middle plot).
 Taking the sphere to the $1/p$ power may seem ad hoc, but the
 operation ensures that the density is uniform within the sphere. To see
-this, compare circles of radius 1 and 2 (right plot).  The area of the
-smaller circle equals $\pi =  1^2\pi $.  The area of the whole
+this, compare circles of radius 1 and 2 (right plot). The area of the
+smaller circle equals $\pi =  1^2\pi $. The area of the whole
 circle equals $ 4 \pi = 2^2 \pi $, which is four times as large but
-only twice the radius.  Thus, without accounting for radial distance,
+only twice the radius. Thus, without accounting for radial distance,
 more points will be generated closer to the center than is warranted
-by the area.  Raising the vector length to the power $1/p$, 1/2 in our
+by the area. Raising the vector length to the power $1/p$, 1/2 in our
 example, corrects for the volume.
 
 \begin{example}
@@ -669,9 +669,9 @@ necessary.
 Paul Bourke's website \citep{PBCurves} has equations for generating
 several famous objects, including the Mobius Strip, Steiner's Roman
 Surface and the Klein Bottle (Figure \ref{klein}). It is interesting to see how each object
-twists onto itself.  R functions based on these equations were written
-to produce each object.  For each shape, a set of random angles were generated to seed
-the equations, producing points on the surface.  For some of the
+twists onto itself. R functions based on these equations were written
+to produce each object. For each shape, a set of random angles were generated to seed
+the equations, producing points on the surface. For some of the
 objects, to be displayed in its familiar form, the plot limits for each
 variable need to use the same global minimum and maximum values.
 
@@ -689,10 +689,10 @@ variable need to use the same global minimum and maximum values.
 A \emph{polytope} is a generalized term of a geometric shape in any
 dimension. A polygon is a 2-D polytope. A polyhedron is a 3-D
 polytope. A polychoron is a 4-D polytope. Beyond that, we typically use
-polytope to refer to any $p$-gon.  Our polychoron data comes from Paul
+polytope to refer to any $p$-gon. Our polychoron data comes from Paul
 Bourke's website \citep{PBPlatonic}, where there is also information on some of the
 objects that have been covered (cube, simplex) in the preceding sections of this paper, and new
-objects, 24-cell, 120-cell, 600-cell (Figure \ref{polytope}).  The explanations of these
+objects, 24-cell, 120-cell, 600-cell (Figure \ref{polytope}). The explanations of these
 polytopes is very clear. The data has been formatted into XML files
 allowing descriptions of the vertices and edges for each shape.
 
@@ -725,11 +725,11 @@ doughnut. The points for the torus are formed by polar coordinates.
 \end{figure}
 
 To produce a 4-D torus, a 3-D torus is rotated around a circle into
-the fourth dimension (Figure \ref{ringtorus} bottom row).  This torus
-still has a hole in the center.  The process can be thought of as a
+the fourth dimension (Figure \ref{ringtorus} bottom row). This torus
+still has a hole in the center. The process can be thought of as a
 recursive circle system. For a 3-D torus, the smaller radius circle
 follows the larger radius circle. For a 4-D torus, a 3-D torus follows an even
-larger radius circle.  That is, the lower-dimensional torus is
+larger radius circle. That is, the lower-dimensional torus is
 shifted by a fixed distance and rotated about a \textit{new} axis
 perpendicular to the axis of the hole. This algorithm for a ring torus has not been
 previously defined and will be explained in detail in the following section.
@@ -764,7 +764,7 @@ recursively. A 2-D circle forms the base of the torus, which is defined by:
 Notice that 3-D torus builds from the 2-D: $r_1$ is replaced by
 ($r_1 + cos(\theta_2)r_2$). The 3-D torus has four parameters: two angles and
 two radii. The third dimension is formed entirely by the additional
-angle and radius.  A 4-D torus will be generated with the same pattern
+angle and radius. A 4-D torus will be generated with the same pattern
 as the 3-D torus: a new dimension will be added and material will be
 inserted recursively into the formulas:
 
@@ -855,7 +855,7 @@ The construction of a 4-D torus is shown below:
 \end{eqnarray*}
 
 This code results in one row of data for one point on the 4-D torus
-for each value of angle.  By varying the angle and binding the result,
+for each value of angle. By varying the angle and binding the result,
 we get points over the surface of the torus:
 
 \newpage
@@ -884,8 +884,8 @@ $2\pi$:
 theta <- runif(p - 1, min = 0, max = 2 * pi)
 \end{example}
 
-The radii for the process are fixed at the start.  To produce a hole
-in each dimension the radii need to decrease with $p$.  We set the
+The radii for the process are fixed at the start. To produce a hole
+in each dimension the radii need to decrease with $p$. We set the
 hole to have a size of 1 in each dimension, and the radii are reduced by a power
 of 2 from the previous dimension.
 
@@ -894,7 +894,7 @@ radius <- 2 ^ ((p - 2):0)
 \end{example}
 
 \noindent This produces points fairly evenly but not uniformly spread on the surface of
-the torus.  A different way to generate the torus is to produce the angles
+the torus. A different way to generate the torus is to produce the angles
 at set intervals, resulting in more circular patterns.
 
 \subsection{Flat torus}
@@ -905,12 +905,12 @@ has multiple holes in it's center and is easy to generate.
 
 A flat torus is formed in pairs of dimensions, defined by a sine and
 cosine of one angle, for example the circle is generated in 2-D by
-$cos(\theta_1)$ and $sin(\theta_1)$.  A flat torus in any dimension is created
+$cos(\theta_1)$ and $sin(\theta_1)$. A flat torus in any dimension is created
 from multiple pairs of sine and cosine, e.g.\ a 1-D torus is generated by
 one pair, a 2-D torus by two pairs, four variables, and a 3-D torus by
-three pairs, six variables (Figure \ref{flat1}).  All values of sine
+three pairs, six variables (Figure \ref{flat1}). All values of sine
 and cosine are generated from angles, $(-2\pi, 2\pi)$, separately for
-each pair.  The flat torus has an even number of dimensions, but an
+each pair. The flat torus has an even number of dimensions, but an
 effective dimension half that size. Figure \ref{flat2} illustrates the
 construction of a 6-D flat torus.
 
@@ -949,11 +949,11 @@ construction of a 6-D flat torus.
 %%% explain why it is here? I think you have something to say about
 %%% this but there's nothing right now.
 
-%%%  I believe you have already referenced this picture.  ``Figure \ref{flat2} illustrates the construction.''
+%%%  I believe you have already referenced this picture. ``Figure \ref{flat2} illustrates the construction.''
 %%%  It is also in the figure, that is not commented out, right above this statement.
 %%%  So, I don't think I need to reference it.
 
-\subsection{Solid tori}  %%%  Di, Why the question mark?  See if you also agree with the statement below.  Is the the smallest radii only or all but the largest?  For a doughnut it is only the smallest or all but the largest one.
+\subsection{Solid tori}  %%%  Di, Why the question mark?  See if you also agree with the statement below. Is the the smallest radii only or all but the largest?  For a doughnut it is only the smallest or all but the largest one.
 
 These tori are all hollow. To create points in the interior of the
 tori one would randomly generate the radii length for each point.
